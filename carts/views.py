@@ -54,13 +54,13 @@ def add_cart(request, product_id):
                 index = ex_var_list.index(product_variation)
                 item_id=id[index]
                 item=CartItem.objects.get(product=product, id=item_id)
-                item.quantity +=1
+                item.quantity += 1
                 item.save()
             else:
                 #create a new cart item
                 item = CartItem.objects.create(product=product, quantity=1, cart=cart)
 
-                if len(product_variation) >= 0:
+                if len(product_variation) > 0:
                     item.variations.clear()
                     item.variations.add(*product_variation) #adding all the varients
                 item.save()
